@@ -580,31 +580,16 @@ function updateCountdown() {
 }
 updateCountdown();
 setInterval(updateCountdown, 1000);
-  const stored = localStorage.getItem('countdown_end');
-  let endTime;
-  if (stored) {
-    endTime = parseInt(stored);
-  } else {
-    endTime = Date.now() + (3 * 60 * 60 * 1000) + (47 * 60 * 1000);
-    localStorage.setItem('countdown_end', endTime);
-  }
-  const diff = endTime - Date.now();
-  if (diff <= 0) {
-    document.getElementById('hours').textContent = '00';
-    document.getElementById('minutes').textContent = '00';
-    document.getElementById('seconds').textContent = '00';
-    return;
-  }
-  const h = Math.floor(diff / 3600000);
-  const m = Math.floor((diff % 3600000) / 60000);
-  const s = Math.floor((diff % 60000) / 1000);
-  document.getElementById('hours').textContent = String(h).padStart(2,'0');
-  document.getElementById('minutes').textContent = String(m).padStart(2,'0');
-  document.getElementById('seconds').textContent = String(s).padStart(2,'0');
-}
-updateCountdown();
-setInterval(updateCountdown, 1000);
 
+// FAQ
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
 // FAQ
 document.querySelectorAll('.faq-item').forEach(item => {
   item.addEventListener('click', () => {
